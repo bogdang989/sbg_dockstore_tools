@@ -186,6 +186,9 @@ doc: |
   | 95.2GB         | 9.2$ | 22h 52m  | c4.2xlarge       |
 
   | 143.4GB        | 12.8$ | 31h 5m   | c4.2xlarge     |
+dct:creator:
+  foaf:name: Bogdan Gavrilovic
+  foaf:mbox: "mailto:bogdan.gavrilovic@sbgenomics.com"
 label: ICGC-PCAWG-Seqware-BWA-Workflow
 arguments:
   - position: 14
@@ -218,12 +221,4 @@ hints:
   - class: 'sbg:SaveLogs'
     value: '*.log'
 stdout: stdout.txt
-'dct:creator':
-  'foaf:mbox': 'mailto:bogdan.gavrilovic@sbgenomics.com'
-  'foaf:name': Bogdan Gavrilovic
-'sbg:categories':
-  - Alignment
-  - CWL1.0
-'sbg:links':
-  - id: 'Source Code [URL]'
-    label: 'https://github.com/ICGC-TCGA-PanCancer/Seqware-BWA-Workflow'
+
