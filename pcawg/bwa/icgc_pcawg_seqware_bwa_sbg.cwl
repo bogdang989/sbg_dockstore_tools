@@ -215,9 +215,9 @@ hints:
   - class: 'sbg:SaveLogs'
     value: '*.log'
 stdout: stdout.txt
-'dct:creator':
-  'foaf:mbox': 'mailto:bogdan.gavrilovic@sbgenomics.com'
-  'foaf:name': Bogdan Gavrilovic
+dct:creator:
+  foaf:mbox: 'mailto:bogdan.gavrilovic@sbgenomics.com'
+  foaf:name: Bogdan Gavrilovic
 'sbg:categories':
   - Alignment
   - CWL1.0
