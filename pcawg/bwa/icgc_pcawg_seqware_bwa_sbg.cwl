@@ -4,7 +4,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://sevenbridges.com'
-id: pcawg_bwa_sbg_modified
+id: "pcawg_bwa_sbg_modified"
 baseCommand:
   - /start.sh
   - python
@@ -12,7 +12,7 @@ baseCommand:
 inputs:
   - id: output_file_basename
     type: string?
-    label: Output File Basename
+    label: "Output File Basename"
     doc: >-
       The basename to use for output files. If not defined, input BAM names will
       be used to set output name.
