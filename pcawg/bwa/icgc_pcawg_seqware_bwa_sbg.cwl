@@ -4,6 +4,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://sevenbridges.com'
+id: PcawgBwaSbgModified
 baseCommand:
   - /start.sh
   - python
