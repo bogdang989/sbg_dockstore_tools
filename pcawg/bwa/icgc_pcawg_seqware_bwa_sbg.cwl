@@ -2,7 +2,6 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://sevenbridges.com'
-id: bogdang/pcawg-bwa-demo/pcawg-bwa/2
 baseCommand:
   - /start.sh
   - python
@@ -216,13 +215,9 @@ hints:
   - class: 'sbg:SaveLogs'
     value: '*.log'
 stdout: stdout.txt
-'dct:contributor':
-  'foaf:mbox': 'mailto:denis.yuen@oicr.on.ca'
-  'foaf:name': Denis Yuen
 'dct:creator':
-  '@id': 'http://orcid.org/0000-0002-7681-6415'
-  'foaf:mbox': 'mailto:briandoconnor@gmail.com'
-  'foaf:name': Brian O'Connor
+  'foaf:mbox': 'mailto:bogdan.gavrilovic@sbgenomics.com'
+  'foaf:name': Bogdan Gavrilovic
 'sbg:categories':
   - Alignment
   - CWL1.0
