@@ -1,10 +1,8 @@
-#!/usr/bin/env cwl-runner
-
 class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://sevenbridges.com'
-id: PcawgBwaSbgModified
+id: _pcawg_bwa_sbg_modified
 baseCommand:
   - /start.sh
   - python
@@ -78,7 +76,7 @@ outputs:
       outputEval: >-
         ${return [].concat(inheritMetadata([].concat(self)[0],
         inputs.reads))[0]}
-doc: >-
+doc: |
   The BWA-Mem workflow from the ICGC PanCancer Analysis of Whole Genomes (PCAWG)
   project.
 
@@ -218,9 +216,9 @@ hints:
   - class: 'sbg:SaveLogs'
     value: '*.log'
 stdout: stdout.txt
-dct:creator:
-  foaf:mbox: 'mailto:bogdan.gavrilovic@sbgenomics.com'
-  foaf:name: Bogdan Gavrilovic
+'dct:creator':
+  'foaf:mbox': 'mailto:bogdan.gavrilovic@sbgenomics.com'
+  'foaf:name': Bogdan Gavrilovic
 'sbg:categories':
   - Alignment
   - CWL1.0
