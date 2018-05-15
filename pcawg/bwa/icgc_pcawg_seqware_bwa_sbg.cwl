@@ -187,8 +187,8 @@ doc: |
 
   | 143.4GB        | 12.8$ | 31h 5m   | c4.2xlarge     |
 dct:creator:
-  foaf:name: SevenBridgesGenomics
-  foaf:mbox: "mailto:support@sbgenomics.com"
+  foaf:name: Bogdan Gavrilovic
+  foaf:mbox: "mailto:bogdan.gavrilovic@sbgenomics.com"
 label: ICGC-PCAWG-Seqware-BWA-Workflow
 arguments:
   - position: 14
