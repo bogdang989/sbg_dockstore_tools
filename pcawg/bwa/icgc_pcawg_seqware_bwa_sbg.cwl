@@ -1,8 +1,10 @@
+#!/usr/bin/env cwl-runner
+
 class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://sevenbridges.com'
-id: _pcawg_bwa_sbg_modified
+id: pcawg_bwa_sbg_modified
 baseCommand:
   - /start.sh
   - python
