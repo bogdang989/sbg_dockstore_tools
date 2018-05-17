@@ -67,7 +67,6 @@ doc: >-
 label: TPP ASAPRatioProteinRatioParser
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/ASAPRatioProteinRatioParser
   - position: 1001

@@ -54,11 +54,9 @@ doc: >-
 label: TPP Tandem2XML
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/Tandem2XML
   - position: 1
-    separate: false
     shellQuote: false
     valueFrom: |-
       ${
@@ -66,7 +64,6 @@ arguments:
           return input_path
       }
   - position: 2
-    separate: false
     shellQuote: false
     valueFrom: |-
       ${

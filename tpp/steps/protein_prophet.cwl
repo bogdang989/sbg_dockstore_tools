@@ -165,7 +165,6 @@ inputs:
     inputBinding:
       position: 7
       prefix: LIBRA
-      separate: false
       shellQuote: false
     label: Libra ratios
     doc: >-
@@ -366,7 +365,6 @@ doc: >-
 label: TPP ProteinProphet
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/ProteinProphet
   - position: 3

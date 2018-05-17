@@ -217,7 +217,6 @@ doc: >-
 label: TPP ASAPRatioPeptideParser
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: |-
       ${

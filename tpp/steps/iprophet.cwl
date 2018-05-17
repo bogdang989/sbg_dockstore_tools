@@ -291,7 +291,6 @@ doc: >-
 label: TPP IProphet
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/InterProphetParser
   - position: 101

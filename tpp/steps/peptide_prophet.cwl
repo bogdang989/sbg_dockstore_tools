@@ -591,7 +591,6 @@ doc: >-
 label: TPP PeptideProphet
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/PeptideProphetParser
   - position: 1001

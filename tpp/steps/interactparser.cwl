@@ -74,7 +74,6 @@ inputs:
     inputBinding:
       position: 101
       prefix: '-D'
-      separate: false
       shellQuote: false
       valueFrom: |-
         ${
@@ -91,7 +90,6 @@ inputs:
     inputBinding:
       position: 102
       prefix: '-T'
-      separate: false
       shellQuote: false
     label: Database type
     doc: Database type.
@@ -119,7 +117,6 @@ inputs:
     inputBinding:
       position: 26
       prefix: '-E'
-      separate: false
       shellQuote: false
     label: Enzyme
     doc: >-
@@ -146,7 +143,6 @@ inputs:
     inputBinding:
       position: 12
       prefix: '-X'
-      separate: false
       shellQuote: false
     label: Experiment label
     doc: Assign experiment_label to each spectrum_query.
@@ -181,7 +177,6 @@ inputs:
     inputBinding:
       position: 14
       prefix: '-R'
-      separate: false
       shellQuote: false
     label: Maximum peptide rank in output
     doc: Maximum peptide rank in output.
@@ -192,7 +187,6 @@ inputs:
     inputBinding:
       position: 13
       prefix: '-L'
-      separate: false
       shellQuote: false
     label: Minimum peptide length not rejected
     doc: Minimum peptide length not rejected.
@@ -339,7 +333,6 @@ doc: >-
 label: TPP InteractParser
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: |-
       ${

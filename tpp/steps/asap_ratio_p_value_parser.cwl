@@ -66,7 +66,6 @@ doc: >-
 label: TPP ASAPRatioPvalueParser
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/ASAPRatioPvalueParser
   - position: 1001

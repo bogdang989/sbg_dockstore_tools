@@ -80,7 +80,6 @@ doc: >-
 label: TPP RefreshParser
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/RefreshParser
   - position: 1001
