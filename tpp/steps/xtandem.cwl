@@ -983,11 +983,9 @@ doc: >-
 label: X!Tandem
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /root/tandem
   - position: 1
-    separate: false
     shellQuote: false
     valueFrom: input.xml
 requirements:
