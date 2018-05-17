@@ -70,21 +70,6 @@ inputs:
   - 'sbg:category': Input Files
     id: spectra_files
     type: 'File[]'
-    inputBinding:
-      position: 101
-      shellQuote: false
-      valueFrom: |-
-        ${
-            var res = ''
-            if (inputs.spectra_files != undefined && inputs.spectra_files instanceof Array) {
-                for (var i = 0; i < inputs.spectra_files.length; i++) {
-                    var name = inputs.spectra_files[i].path.split('/')
-                    name = name[name.length - 1]
-                    res = res + ' ' + name
-                }
-            }
-            return res
-        }
     label: Spectra files
     doc: Files containing unknown spectra to be searched.
     'sbg:fileTypes': 'MZXML, MZDATA, DTA, MSP'
@@ -204,7 +189,17 @@ label: TPP SpectraST Search
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: /local/tpp/bin/spectrast
+    valueFrom: |-
+      ${
+                var res = ''
+                for (var i = 0; i < inputs.spectra_files.length; i++) {
+                    res = res + ' ln -s ' + inputs.spectra_files[i].path + ' . ; '
+
+
+                }
+                res += '/local/tpp/bin/spectrast'
+                return res
+            }
   - position: 1001
     shellQuote: false
     valueFrom: |-
@@ -230,6 +225,17 @@ arguments:
           }
           return res
       }
+  - position: 101
+    shellQuote: false
+    valueFrom: |-
+      ${
+                  var res = ''
+                  for (var i = 0; i < inputs.spectra_files.length; i++) {
+                          var name = inputs.spectra_files[i].basename
+                          res = res + ' ' + name
+                      }
+                  return res
+              }
 requirements:
   - class: ShellCommandRequirement
   - class: ResourceRequirement
@@ -239,7 +245,6 @@ requirements:
     dockerPull: 'images.sbgenomics.com/vladimir_obucina/tpp:5.0.0'
   - class: InitialWorkDirRequirement
     listing:
-      - $(inputs.spectra_files)
       - $(inputs.library)
   - class: InlineJavascriptRequirement
     expressionLib:

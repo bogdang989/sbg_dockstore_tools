@@ -26,11 +26,11 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            prefix = inputs.input_file.path.split('/')
+            var prefix = inputs.input_file.path.split('/')
             prefix = prefix[prefix.length - 1]
 
-            pre = prefix.substring(0, prefix.indexOf('.pep'))
-            suf = prefix.substring(prefix.indexOf('.pep'), prefix.length)
+            var pre = prefix.substring(0, prefix.indexOf('.pep'))
+            var suf = prefix.substring(prefix.indexOf('.pep'), prefix.length)
 
             return pre + '.aspval' + suf
         }
@@ -73,14 +73,14 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          prefix = inputs.input_file.path.split('/')
+          var prefix = inputs.input_file.path.split('/')
           prefix = prefix[prefix.length - 1]
 
-          res = ' ; mv '
+          var res = ' ; mv '
           res = res + prefix + ' '
 
-          pre = prefix.substring(0, prefix.indexOf('.pep'))
-          suf = prefix.substring(prefix.indexOf('.pep'), prefix.length)
+          var pre = prefix.substring(0, prefix.indexOf('.pep'))
+          var suf = prefix.substring(prefix.indexOf('.pep'), prefix.length)
 
           res = res + pre + '.aspval' + suf
 

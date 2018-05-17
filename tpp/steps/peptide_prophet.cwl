@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-peptideprophet-5-0-0/9
+id: admin_sbg_public_data_tpp_peptideprophet_5_0_0_9
 baseCommand: []
 inputs:
   - 'sbg:category': Input Options
@@ -30,7 +30,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.clevel != undefined) {
-                data = inputs.clevel
+                var data = inputs.clevel
                 return 'CLEVEL=' + data
             }
 
@@ -48,7 +48,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.decoy != undefined) {
-                data = inputs.decoy
+                var data = inputs.decoy
                 return 'DECOY=' + data
             }
 
@@ -154,7 +154,10 @@ inputs:
     label: ICAT
     doc: apply ICAT model (default Autodetect ICAT)
   - id: input_file
-    type: File
+    type:
+      - File
+      - type: array
+        items: File
     inputBinding:
       position: 51
       shellQuote: false
@@ -220,7 +223,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.minpintt != undefined) {
-                data = inputs.minpintt
+                var data = inputs.minpintt
                 return 'MINPINTT=' + data
             }
 
@@ -237,7 +240,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.minpiprob != undefined) {
-                data = inputs.minpiprob
+                var data = inputs.minpiprob
                 return 'MINPIPROB=' + data
             }
 
@@ -256,7 +259,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.minprob != undefined) {
-                data = inputs.minprob
+                var data = inputs.minprob
                 return 'MINPROB=' + data
             }
 
@@ -273,7 +276,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.minrtntt != undefined) {
-                data = inputs.minrtntt
+                var data = inputs.minrtntt
                 return 'MINRTNTT=' + data
             }
 
@@ -290,7 +293,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.minrtprob != undefined) {
-                data = inputs.minrtprob
+                var data = inputs.minrtprob
                 return 'MINRTPROB=' + data
             }
 
@@ -492,7 +495,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.rtcat != undefined) {
-                data = inputs.rtcat.path
+                var data = inputs.rtcat.path
                 return 'RTCAT=' + data
             }
 
@@ -524,15 +527,15 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            input_file = ''
+            var input_file = ''
             if (inputs.input_file instanceof Array) {
                 input_file = inputs.input_file[0].path
             } else {
                 input_file = inputs.input_file.path
             }
             input_file = input_file.split('/')[input_file.split('/').length - 1]
-            prefix = input_file.substring(0, input_file.indexOf('.pep'))
-            suf = input_file.substring(input_file.indexOf('.pep'), input_file.length)
+            var prefix = input_file.substring(0, input_file.indexOf('.pep'))
+            var suf = input_file.substring(input_file.indexOf('.pep'), input_file.length)
 
             return prefix + '.peppro' + suf
         }
@@ -595,17 +598,17 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          input_file = ''
+          var input_file = ''
           if (inputs.input_file instanceof Array) {
               input_file = inputs.input_file[0].path
           } else {
               input_file = inputs.input_file.path
           }
           input_file = input_file.split('/')[input_file.split('/').length - 1]
-          prefix = input_file.substring(0, input_file.indexOf('.pep'))
-          suf = input_file.substring(input_file.indexOf('.pep'), input_file.length)
+          var prefix = input_file.substring(0, input_file.indexOf('.pep'))
+          var suf = input_file.substring(input_file.indexOf('.pep'), input_file.length)
 
-          data = '; mv ' + input_file + ' ' + prefix + '.peppro' + suf
+          var data = '; mv ' + input_file + ' ' + prefix + '.peppro' + suf
           return data
       }
 requirements:
@@ -707,4 +710,3 @@ requirements:
             else
                 return files.reverse();
         };
-

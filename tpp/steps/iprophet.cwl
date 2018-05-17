@@ -14,7 +14,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.category_file != undefined) {
-                path = inputs.category_file.path
+                var path = inputs.category_file.path
                 return 'CAT=' + path
             }
         }
@@ -29,7 +29,7 @@ inputs:
       valueFrom: |-
         ${
             if (inputs.decoy_tag != undefined) {
-                decoy = inputs.decoy_tag
+                var decoy = inputs.decoy_tag
                 return 'DECOY=' + decoy
             }
         }
@@ -42,7 +42,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.input_files instanceof Array) {
                 for (var i = 0; i < inputs.input_files.length; i++) {
                     res = res + ' '
@@ -228,14 +228,14 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            input = ''
+            var input = ''
             if (inputs.input_files instanceof Array)
                 input = inputs.input_files[0].path
             else
                 input = inputs.input_files.path
             input = input.split('/')[input.split('/').length - 1]
-            prefix = ''
-            suf = ''
+            var prefix = ''
+            var suf = ''
             if (input.indexOf('xtan') != -1) {
                 prefix = input.substring(0, input.indexOf('.xtan'))
                 suf = input.substring(input.indexOf('.xtan'), input.length)
@@ -298,14 +298,14 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          input = ''
+          var input = ''
           if (inputs.input_files instanceof Array)
               input = inputs.input_files[0].path
           else
               input = inputs.input_files.path
           input = input.split('/')[input.split('/').length - 1]
-          prefix = ''
-          suf = ''
+          var prefix = ''
+          var suf = ''
           if (input.indexOf('xtan') != -1) {
               prefix = input.substring(0, input.indexOf('.xtan'))
               suf = input.substring(input.indexOf('.xtan'), input.length)

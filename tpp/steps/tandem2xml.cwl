@@ -17,9 +17,9 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            input_name = inputs.input_file.path.split('/').pop()
-            input2 = input_name.split('.')[0] + '.' + input_name.split('.')[1] //replace(/\.[^/.]+$/, "")
-            output = input2 + '.pep.xml'
+            var input_name = inputs.input_file.path.split('/').pop()
+            var input2 = input_name.split('.')[0] + '.' + input_name.split('.')[1] //replace(/\.[^/.]+$/, "")
+            var output = input2 + '.pep.xml'
             return '*' + output
         }
       outputEval: |-
@@ -62,7 +62,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          input_path = inputs.input_file.path
+          var input_path = inputs.input_file.path
           return input_path
       }
   - position: 2
@@ -70,9 +70,9 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          input_name = inputs.input_file.path.split('/').pop()
-          input2 = input_name.split('.')[0] + '.' + input_name.split('.')[1] //replace(/\.[^/.]+$/, "")
-          output = input2 + '.pep.xml'
+          var input_name = inputs.input_file.path.split('/').pop()
+          var input2 = input_name.split('.')[0] + '.' + input_name.split('.')[1] //replace(/\.[^/.]+$/, "")
+          var output = input2 + '.pep.xml'
           return output
       }
 requirements:

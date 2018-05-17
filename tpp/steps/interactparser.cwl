@@ -158,8 +158,8 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
-            pre = name.substring(0, name.indexOf('.pep.xml'))
+            var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+            var pre = name.substring(0, name.indexOf('.pep.xml'))
             if (inputs.input_mzxml_files != undefined)
                 return pre + '.ch.pep.xml'
             else
@@ -299,7 +299,7 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+            var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
             return name.substring(0, name.length - 8) + '.intpar.pep.xml'
         }
@@ -343,21 +343,21 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          res = ''
+          var res = ''
           if (inputs.input_mzxml_files != undefined) {
               res = res + 'python ./parse_xml.py --inputprev '
 
-              pep_xml = ''
+              var pep_xml = ''
               if (inputs.input_file instanceof Array)
                   pep_xml = inputs.input_file[0].path.split('/')[inputs.input_file[0].path.split('/').length - 1]
               else
                   pep_xml = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
-              mzxml = ''
+              var mzxml = ''
               if (inputs.input_mzxml_files instanceof Array) {
-                  for (i = 0; i < inputs.input_mzxml_files.length; i++) {
-                      n = inputs.input_mzxml_files[i].path.split('/')[inputs.input_mzxml_files[i].path.split('/').length - 1]
-                      pret = ''
+                  for (var i = 0; i < inputs.input_mzxml_files.length; i++) {
+                      var n = inputs.input_mzxml_files[i].path.split('/')[inputs.input_mzxml_files[i].path.split('/').length - 1]
+                      var pret = ''
                       if (n.indexOf('mzML') != -1)
                           pret = n.substring(0, n.length - 6)
                       else
@@ -371,8 +371,8 @@ arguments:
               res = res + ' --input '
               res = res + pep_xml
               res = res + ' --output '
-              name = pep_xml
-              pre = name.substring(0, name.indexOf('.pep.xml'))
+              var name = pep_xml
+              var pre = name.substring(0, name.indexOf('.pep.xml'))
               res = res + pre + '.ch.pep.xml '
 
               res = res + ' ; '
@@ -380,7 +380,7 @@ arguments:
 
           res = res + '/local/tpp/bin/InteractParser '
 
-          name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+          var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
           res = res + name.substring(0, name.length - 8) + '.intpar.pep.xml'
 

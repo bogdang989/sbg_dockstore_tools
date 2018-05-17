@@ -1,6 +1,88 @@
 class: Workflow
 cwlVersion: v1.0
 id: admin_sbg_public_data_the_trans_proteomic_pipeline_5_0_0_14
+doc: >-
+  The Trans-Proteomic Pipeline (TPP) is a suite of software tools used for the
+  analysis of a variety of types of mass spectrometry data. It supports mass
+  spectrometer output file conversion, peptide identification with a sequence or
+  spectral library search engine, protein-level inference, and peptide- and
+  protein-level validation and quantification.
+
+
+  Each of the tools that is included in the TPP is described in the online [TPP
+  Tutorial](http://tools.proteomecenter.org/wiki/index.php?title=TPP_Tutorial). 
+
+
+  To demonstrate the use of the TPP, we created the current workflow, which
+  incorporates a subset of the available tools: ReAdw4Mascot2 for raw file
+  conversion, SpectraST and X!Tandem and SpectraST for peptide-identification,
+  Tandem2XML for Tandem output file conversion, PeptideProphet for validation of
+  peptide-spectrum assignments, iProphet for additional peptide-level
+  validation, ProteinProphet for protein-level validation, and ASAP for peptide
+  quantification. In The Clinical Proteomic Tumor Analysis Consortium (CPTAC)
+  public project on the CGC, we use this workflow to analyze a sample dataset
+  from SILAC-labeled yeast (_Saccharomyces cerevisiae_) whole cell lysates
+  digested with trypsin and run (in two runs) on a Thermo Scientific LTQ
+  Orbitrap mass spectrometer (as described in Deutsch et al, 2010).
+
+
+  ###Required inputs
+
+  1. library: library of pre-identified spectra to which peptide sequences have
+  been assigned in splib file format; secondary files used with library file in
+  spidx and pepidx format
+
+  2. database: protein sequence database in FASTA or FA format
+
+  3. raw_input: mass spectrometry data in RAW data format
+
+  4. list_path_default_parameters: default parameters used by X!Tandem
+   
+  ###Outputs
+
+  1. readw4mascot2\_output\_file: mass-spectrometry data in the common, open
+  data format mzXML
+
+  2. spectrast\_output\_file: SpectraST peptide-spectrum matches in pepXML
+  format
+
+  3. xtandem\_output\_XML\_file: X!Tandem peptide-spectrum matches in xml format
+
+  4. tandem2xml\_output\_file: X!Tandem peptide-spectrum matches in pepXML
+  format
+
+  5. interact\_parser\_output\_file: X!Tandem corrected peptide-spectrum matches
+  in pepXML format
+
+  6. peptide\_prophet\_x\_output\_file: X!Tandem peptide-spectrum assignment
+  validation results in pepXML format
+
+  7. peptide\_prophet\_s\_output\_file: SpectraST peptide-spectrum assignment
+  validation results in pepXML format
+
+  8. iprophet\_output\_file: X!Tandem and SpectraST results validated by
+  PeptideProphet that have been merged and further validated on the peptide
+  level in pepXML format
+
+  9. asap\_peptide\_output\_file, asap\_protein\_output\_file,
+  asap\_pvalue\_output\_file: measured relative expression levels of peptides
+  and proteins from isotopically-labeled samples in pepXML format
+
+  10. protein\_prophet\_output\_file: validated protein identifications in
+  pepXML format
+   
+  ###NOTE
+
+  Additional TPP tools not included in this workflow are available in a separate
+  workflow in The Clinical Proteomic Tumor Analysis Consortium (CPTAC) public
+  project or upon request:
+
+
+  1. Raw Mass Spectrometry Data Conversion: MSConvert 
+
+  2. Peptide Identification: Comet, MS-GF+
+
+  3. Quantification: XPress, Libra
 label: The Trans-Proteomic Pipeline
 $namespaces:
   sbg: 'https://sevenbridges.com'
@@ -37,7 +119,7 @@ outputs:
   - id: readw4mascot2_output_file
     outputSource: ReAdw4Mascot2/Output_mzXML_file
     'sbg:fileTypes': mzXML
-    type: File[]?
+    type: 'File[]?'
     label: readw4mascot2_output_file
     'sbg:includeInPorts': true
     'sbg:x': 499.6923347619866
@@ -69,7 +151,7 @@ outputs:
   - id: interact_parser_output_file
     outputSource: TPP_InteractParser/output_file
     'sbg:fileTypes': PEP.XML
-    type: File[]?
+    type: 'File[]?'
     label: interact_parser_output_file
     'sbg:includeInPorts': true
     'sbg:x': 972.1539026040301
@@ -133,7 +215,7 @@ outputs:
   - id: tandem2xml_output_file
     outputSource: TPP_Tandem2XML/output_file
     'sbg:fileTypes': PEP.XML
-    type: File[]?
+    type: 'File[]?'
     label: tandem2xml_output_file
     'sbg:includeInPorts': true
     'sbg:x': 825.307739239473
@@ -150,8 +232,7 @@ steps:
       - id: Output_mzXML_file
     run: steps/readw4mascot2.cwl
     label: ReAdw4Mascot2
-    scatter:
-      - Raw_Input
+    scatter: Raw_Input
     'sbg:x': 263.07693678387585
     'sbg:y': 367.692334705557
   - id: TPP_SpectraST_Search
@@ -250,7 +331,6 @@ steps:
         default: true
       - id: input_file
         source: TPP_InteractParser/output_file
-        valueFrom: $(self[0])
     out:
       - id: output_file
     run: steps/peptide_prophet.cwl
@@ -263,7 +343,6 @@ steps:
         default: true
       - id: input_file
         source: TPP_SpectraST_Search/output_file
-        valueFrom: $(self[0])
     out:
       - id: output_file
     run: steps/peptide_prophet.cwl
@@ -316,8 +395,8 @@ steps:
   - id: TPP_ProteinProphet
     in:
       - id: input_files
-        valueFrom: $(self[0])
         source: TPP_RefreshParser/output_file
+        valueFrom: $([self])
     out:
       - id: html_file
       - id: output_prot_xml_file
@@ -348,89 +427,8 @@ steps:
     'sbg:y': 294.00001617578374
 requirements:
   - class: ScatterFeatureRequirement
+  - class: StepInputExpressionRequirement
   - class: MultipleInputFeatureRequirement
-doc: >-
-  The Trans-Proteomic Pipeline (TPP) is a suite of software tools used for the
-  analysis of a variety of types of mass spectrometry data. It supports mass
-  spectrometer output file conversion, peptide identification with a sequence or
-  spectral library search engine, protein-level inference, and peptide- and
-  protein-level validation and quantification.
-
-
-  Each of the tools that is included in the TPP is described in the online [TPP
-  Tutorial](http://tools.proteomecenter.org/wiki/index.php?title=TPP_Tutorial). 
-
-
-  To demonstrate the use of the TPP, we created the current workflow, which
-  incorporates a subset of the available tools: ReAdw4Mascot2 for raw file
-  conversion, SpectraST and X!Tandem and SpectraST for peptide-identification,
-  Tandem2XML for Tandem output file conversion, PeptideProphet for validation of
-  peptide-spectrum assignments, iProphet for additional peptide-level
-  validation, ProteinProphet for protein-level validation, and ASAP for peptide
-  quantification. In The Clinical Proteomic Tumor Analysis Consortium (CPTAC)
-  public project on the CGC, we use this workflow to analyze a sample dataset
-  from SILAC-labeled yeast (_Saccharomyces cerevisiae_) whole cell lysates
-  digested with trypsin and run (in two runs) on a Thermo Scientific LTQ
-  Orbitrap mass spectrometer (as described in Deutsch et al, 2010).
-
-
-  ###Required inputs
-
-  1. library: library of pre-identified spectra to which peptide sequences have
-  been assigned in splib file format; secondary files used with library file in
-  spidx and pepidx format
-
-  2. database: protein sequence database in FASTA or FA format
-
-  3. raw_input: mass spectrometry data in RAW data format
-
-  4. list_path_default_parameters: default parameters used by X!Tandem
-   
-  ###Outputs
-
-  1. readw4mascot2\_output\_file: mass-spectrometry data in the common, open
-  data format mzXML
-
-  2. spectrast\_output\_file: SpectraST peptide-spectrum matches in pepXML
-  format
-
-  3. xtandem\_output\_XML\_file: X!Tandem peptide-spectrum matches in xml format
-
-  4. tandem2xml\_output\_file: X!Tandem peptide-spectrum matches in pepXML
-  format
-
-  5. interact\_parser\_output\_file: X!Tandem corrected peptide-spectrum matches
-  in pepXML format
-
-  6. peptide\_prophet\_x\_output\_file: X!Tandem peptide-spectrum assignment
-  validation results in pepXML format
-
-  7. peptide\_prophet\_s\_output\_file: SpectraST peptide-spectrum assignment
-  validation results in pepXML format
-
-  8. iprophet\_output\_file: X!Tandem and SpectraST results validated by
-  PeptideProphet that have been merged and further validated on the peptide
-  level in pepXML format
-
-  9. asap\_peptide\_output\_file, asap\_protein\_output\_file,
-  asap\_pvalue\_output\_file: measured relative expression levels of peptides
-  and proteins from isotopically-labeled samples in pepXML format
-
-  10. protein\_prophet\_output\_file: validated protein identifications in
-  pepXML format
-   
-  ###NOTE
-
-  Additional TPP tools not included in this workflow are available in a separate
-  workflow in The Clinical Proteomic Tumor Analysis Consortium (CPTAC) public
-  project or upon request:
-
-
-  1. Raw Mass Spectrometry Data Conversion: MSConvert 
-
-  2. Peptide Identification: Comet, MS-GF+
-
-  3. Quantification: XPress, Libra
 'sbg:license': GNU Lesser General Public License v2.1
 'sbg:links':
   - id: 'http://tools.proteomecenter.org/wiki/index.php?title=TPP_Tutorial'

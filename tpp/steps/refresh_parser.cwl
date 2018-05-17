@@ -39,10 +39,10 @@ outputs:
     outputBinding:
       glob: |-
         ${
-            name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+            var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
-            prefix = name.substring(0, name.indexOf('.pep'))
-            suf = name.substring(name.indexOf('.pep'), name.length)
+            var prefix = name.substring(0, name.indexOf('.pep'))
+            var suf = name.substring(name.indexOf('.pep'), name.length)
 
             return prefix + '.rp' + suf
         }
@@ -88,13 +88,13 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          res = ' mv '
-          name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+          var res = ' mv '
+          var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
           res = res + name + ' '
 
-          prefix = name.substring(0, name.indexOf('.pep'))
-          suf = name.substring(name.indexOf('.pep'), name.length)
+          var prefix = name.substring(0, name.indexOf('.pep'))
+          var suf = name.substring(name.indexOf('.pep'), name.length)
           res = res + prefix + '.rp' + suf
           return res
       }

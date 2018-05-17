@@ -40,10 +40,10 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+            var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
             if (inputs.input_mzxml_files != undefined) {
-                pre = name.substring(0, name.indexOf('.pep.xml'))
+                var pre = name.substring(0, name.indexOf('.pep.xml'))
 
                 return pre + '.ch.pep.xml'
             }
@@ -164,11 +164,11 @@ outputs:
       glob: |-
         ${
 
-            prefix = inputs.input_file.path.split('/')
+            var prefix = inputs.input_file.path.split('/')
             prefix = prefix[prefix.length - 1]
 
             if (inputs.input_mzxml_files != undefined) {
-                pre = prefix.substring(0, prefix.indexOf('.pep.xml'))
+                var pre = prefix.substring(0, prefix.indexOf('.pep.xml'))
                 prefix = pre + '.ch.pep.xml'
             }
 

@@ -125,10 +125,10 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.input_files != undefined && inputs.input_files instanceof Array) {
                 for (var i = 0; i < inputs.input_files.length; i++) {
-                    name = inputs.input_files[i].path.split('/')
+                    var name = inputs.input_files[i].path.split('/')
                     name = name[name.length - 1]
                     res = res + ' ' + name
                 }
@@ -317,10 +317,10 @@ outputs:
       glob: |-
         ${
             if (inputs.input_files instanceof Array) {
-                name = inputs.input_files[0].path.split('/')[inputs.input_files[0].path.split('/').length - 1]
+                var name = inputs.input_files[0].path.split('/')[inputs.input_files[0].path.split('/').length - 1]
                 return name.substring(0, name.length - 3) + 'prot.xml'
             }
-            name = inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
+            var name = inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
             return name.substring(0, name.length - 3) + 'prot.xml'
         }
     'sbg:fileTypes': XML
@@ -374,10 +374,10 @@ arguments:
     valueFrom: |-
       ${
           if (inputs.input_files instanceof Array) {
-              name = inputs.input_files[0].path.split('/')[inputs.input_files[0].path.split('/').length - 1]
+              var name = inputs.input_files[0].path.split('/')[inputs.input_files[0].path.split('/').length - 1]
               return name
           }
-          name = inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
+          var name = inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
           return name
       }
   - position: 2001
@@ -400,16 +400,16 @@ requirements:
       - entryname: gen_html.py
         entry: |-
           ${
-            res = 'import base64\n\n'
-            name = ''
+            var res = 'import base64\n\n'
+            var name = ''
             if(inputs.input_files instanceof Array)
               name = inputs.input_files[0].basename
             else
               name = inputs.input_files.basename
               
-            part = name.substring(0, name.length-3)
+            var part = name.substring(0, name.length-3)
             name = part + 'prot.png'
-            html = part + 'prot.html'
+            var html = part + 'prot.html'
             
             res = res + 'f = open(\'' + html + '\', \'w\')\n'
             
