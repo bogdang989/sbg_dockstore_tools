@@ -24,7 +24,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.XmlOrbiMs1Profile != undefined && inputs.XmlOrbiMs1Profile == true)
                 return ' -XmlOrbiMs1Profile '
             return res
@@ -42,7 +42,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.auto_orbi != undefined && inputs.auto_orbi == true)
                 return ' -AutoOrbi '
             return res
@@ -58,7 +58,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.centroid_data != undefined && inputs.centroid_data == true)
                 return ' -c '
             return res
@@ -74,7 +74,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.charge_mgf_orbi != undefined && inputs.charge_mgf_orbi == true)
                 return ' -ChargeMgfOrbi '
             return res
@@ -92,7 +92,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.compression != undefined && inputs.compression == true)
                 return ' -Compression '
             return res
@@ -108,7 +108,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.fix_pepmass != undefined && inputs.fix_pepmass == true)
                 return ' -FixPepmass '
             return res
@@ -126,7 +126,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.ftpeakinfoms1 != undefined && inputs.ftpeakinfoms1 == true)
                 return ' -ftPeakInfoMs1 '
             return res
@@ -144,7 +144,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.ftpeakinfomsms != undefined && inputs.ftpeakinfomsms == true)
                 return ' -ftPeakInfoMsMs '
             return res
@@ -162,7 +162,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.itraq_4 != undefined && inputs.itraq_4 == true)
                 return ' -iTRAQ '
             return res
@@ -178,7 +178,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.itraq_8 != undefined && inputs.itraq_8 == true)
                 return ' -iTRAQ8 '
             return res
@@ -206,7 +206,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.max_pi != undefined && inputs.max_pi == true)
                 return ' -MaxPI '
             return res
@@ -222,7 +222,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.metadata != undefined && inputs.metadata == true)
                 return ' -metadata '
             return res
@@ -238,7 +238,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.monoiso_mgf != undefined && inputs.monoiso_mgf == true)
                 return ' -MonoisoMgf '
             return res
@@ -254,7 +254,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.monoiso_mgf_orbi != undefined && inputs.monoiso_mgf_orbi == true)
                 return ' -MonoisoMgfOrbi '
             return res
@@ -272,7 +272,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.ms1 != undefined && inputs.ms1 == true)
                 return ' -ms1 '
             return res
@@ -288,7 +288,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.msfr != undefined && inputs.msfr == true)
                 return ' -msfr '
             return res
@@ -313,7 +313,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.no_peaks != undefined && inputs.no_peaks == true)
                 return ' -NoPeaks '
             return res
@@ -329,7 +329,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.no_peaks_1 != undefined && inputs.no_peaks_1 == true)
                 return ' -NoPeaks1 '
             return res
@@ -345,7 +345,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.nomgf != undefined && inputs.nomgf == true)
                 return ' -NoMgf '
             return res
@@ -361,7 +361,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.nomzxml != undefined && inputs.nomzxml == true)
                 return ' -NoMzXml '
             return res
@@ -377,7 +377,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.output_profile != undefined && inputs.output_profile == true)
                 return ' -p '
             return res
@@ -393,7 +393,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.pi_vs_rt != undefined && inputs.pi_vs_rt == true)
                 return ' -PIvsRT '
             return res
@@ -409,7 +409,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.rulers != undefined && inputs.rulers == true)
                 return ' -Rulers '
             return res
@@ -425,7 +425,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.sample_info != undefined && inputs.sample_info == true)
                 return ' -SampleInfo '
             return res
@@ -441,7 +441,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.sep != undefined && inputs.sep == true)
                 return ' -sep '
             return res
@@ -460,7 +460,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.sep1 != undefined && inputs.sep1 == true)
                 return ' -sep1 '
             return res
@@ -476,7 +476,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.sepzc != undefined && inputs.sepzc == true)
                 return ' -sepZC '
             return res
@@ -495,7 +495,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.small_mol != undefined && inputs.small_mol == true)
                 return ' -SmallMol '
             return res
@@ -523,7 +523,7 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.xcal != undefined && inputs.xcal == true)
                 return ' -xcal '
             return res

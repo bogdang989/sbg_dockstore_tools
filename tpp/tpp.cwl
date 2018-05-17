@@ -39,18 +39,16 @@ inputs:
     'sbg:y': 525.1538747090563
 outputs:
   - id: readw4mascot2_output_file
-    outputSource:
-      - ReAdw4Mascot2/Output_mzXML_file
+    outputSource: ReAdw4Mascot2/Output_mzXML_file
     'sbg:fileTypes': mzXML
-    type: File?
+    type: File[]?
     label: readw4mascot2_output_file
     required: false
     'sbg:includeInPorts': true
     'sbg:x': 499.6923347619866
     'sbg:y': 650.3077329122107
   - id: spectrast_output_file
-    outputSource:
-      - TPP_SpectraST_Search/output_file
+    outputSource: TPP_SpectraST_Search/output_file
     'sbg:fileTypes': 'TXT, XLS, PEP.XML, HTML'
     type: 'File[]?'
     label: spectrast_output_file
@@ -59,8 +57,7 @@ outputs:
     'sbg:x': 605.1539453486758
     'sbg:y': -6.461541277417041
   - id: xtandem_output_XML_file
-    outputSource:
-      - X_Tandem/output_XML_file
+    outputSource: X_Tandem/output_XML_file
     'sbg:fileTypes': XML
     type: 'File[]?'
     label: xtandem_output_XML_file
@@ -69,8 +66,7 @@ outputs:
     'sbg:x': 664.1538856579709
     'sbg:y': 626.4615829174338
   - id: peptide_prophet_s_output_file
-    outputSource:
-      - TPP_PeptideProphet/output_file
+    outputSource: TPP_PeptideProphet/output_file
     'sbg:fileTypes': PEP.XML
     type: File?
     label: peptide_prophet_s_output_file
@@ -79,18 +75,16 @@ outputs:
     'sbg:x': 1146
     'sbg:y': -27
   - id: interact_parser_output_file
-    outputSource:
-      - TPP_InteractParser/output_file
+    outputSource: TPP_InteractParser/output_file
     'sbg:fileTypes': PEP.XML
-    type: File?
+    type: File[]?
     label: interact_parser_output_file
     required: false
     'sbg:includeInPorts': true
     'sbg:x': 972.1539026040301
     'sbg:y': 494.53850186788145
   - id: peptide_prophet_x_output_file
-    outputSource:
-      - TPP_PeptideProphet_1/output_file
+    outputSource: TPP_PeptideProphet_1/output_file
     'sbg:fileTypes': PEP.XML
     type: File?
     label: peptide_prophet_x_output_file
@@ -99,8 +93,7 @@ outputs:
     'sbg:x': 1125.3077568457684
     'sbg:y': 426.3846512024221
   - id: iprophet_output_file
-    outputSource:
-      - TPP_IProphet/output_file
+    outputSource: TPP_IProphet/output_file
     'sbg:fileTypes': PEP.XML
     type: File?
     label: iprophet_output_file
@@ -109,8 +102,7 @@ outputs:
     'sbg:x': 1489.6154707211722
     'sbg:y': 509.07695311766423
   - id: asap_pvalue_output_file
-    outputSource:
-      - TPP_ASAPRatioPvalueParser/output_file
+    outputSource: TPP_ASAPRatioPvalueParser/output_file
     'sbg:fileTypes': XML
     type: File?
     label: asap_pvalue_output_file
@@ -119,8 +111,7 @@ outputs:
     'sbg:x': 2345.307836074097
     'sbg:y': 184.15385264616754
   - id: asap_protein_output_file
-    outputSource:
-      - TPP_ASAPRatioProteinRatioParser/output_file
+    outputSource: TPP_ASAPRatioProteinRatioParser/output_file
     'sbg:fileTypes': XML
     type: File?
     label: asap_protein_output_file
@@ -129,8 +120,7 @@ outputs:
     'sbg:x': 2175.923208915271
     'sbg:y': 476.2307960253498
   - id: refresh_parser_output_file
-    outputSource:
-      - TPP_RefreshParser/output_file
+    outputSource: TPP_RefreshParser/output_file
     'sbg:fileTypes': 'XML, PEP.XML'
     type: File?
     label: refresh_parser_output_file
@@ -139,8 +129,7 @@ outputs:
     'sbg:x': 1860.6924184469085
     'sbg:y': 518.923105643346
   - id: asap_peptide_output_file
-    outputSource:
-      - TPP_ASAPRatioPeptideParser/output_file
+    outputSource: TPP_ASAPRatioPeptideParser/output_file
     'sbg:fileTypes': 'XML, PEP.XML'
     type: File?
     label: asap_peptide_output_file
@@ -149,8 +138,7 @@ outputs:
     'sbg:x': 1684.3077898025522
     'sbg:y': 201.23077759375948
   - id: protein_prophet_output_file
-    outputSource:
-      - TPP_ProteinProphet/output_prot_xml_file
+    outputSource: TPP_ProteinProphet/output_prot_xml_file
     'sbg:fileTypes': XML
     type: File?
     label: protein_prophet_output_file
@@ -159,10 +147,9 @@ outputs:
     'sbg:x': 2041.538530050648
     'sbg:y': 201.53844122350463
   - id: tandem2xml_output_file
-    outputSource:
-      - TPP_Tandem2XML/output_file
+    outputSource: TPP_Tandem2XML/output_file
     'sbg:fileTypes': PEP.XML
-    type: File?
+    type: File[]?
     label: tandem2xml_output_file
     required: false
     'sbg:includeInPorts': true
@@ -191,8 +178,7 @@ steps:
       - id: library
         source: library
       - id: spectra_files
-        source:
-          - ReAdw4Mascot2/Output_mzXML_file
+        source: ReAdw4Mascot2/Output_mzXML_file
     out:
       - id: output_file
     run: steps/spectrast_search.cwl
@@ -281,6 +267,7 @@ steps:
         default: true
       - id: input_file
         source: TPP_InteractParser/output_file
+        valueFrom: $(self[0])
     out:
       - id: output_file
     run: steps/peptide_prophet.cwl
@@ -293,6 +280,7 @@ steps:
         default: true
       - id: input_file
         source: TPP_SpectraST_Search/output_file
+        valueFrom: $(self[0])
     out:
       - id: output_file
     run: steps/peptide_prophet.cwl
@@ -317,8 +305,7 @@ steps:
       - id: input_file
         source: TPP_IProphet/output_file
       - id: input_mzxml_files
-        source:
-          - ReAdw4Mascot2/Output_mzXML_file
+        source: ReAdw4Mascot2/Output_mzXML_file
       - id: label_masses
         default: 'M147.035,K136.10916,R166.10941'
       - id: labeled_residues
@@ -346,8 +333,8 @@ steps:
   - id: TPP_ProteinProphet
     in:
       - id: input_files
-        source:
-          - TPP_RefreshParser/output_file
+        valueFrom: $(self[0])
+        source: TPP_RefreshParser/output_file
     out:
       - id: html_file
       - id: output_prot_xml_file
