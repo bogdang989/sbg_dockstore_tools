@@ -5,45 +5,7 @@ $namespaces:
 id: tpp_spectrast_search_5_0_0
 baseCommand: []
 inputs:
-  - 'sbg:category': CANDIDATE SELECTION AND SCORING OPTIONS
-    'sbg:toolDefaultValue': 'False'
-    id: all_charge_states
-    type: boolean?
-    inputBinding:
-      position: 10
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.all_charge_states != undefined & inputs.all_charge_states == true)
-                return '-sz'
-            return ''
-        }
-    label: All charge states
-    doc: >-
-      Search library spectra of all charge states, i.e., ignore specified charge
-      state (if any) of the query spectrum.
-  - 'sbg:category': Input configuration
-    'sbg:toolDefaultValue': 'False'
-    id: cache_all_entries
-    type: boolean?
-    inputBinding:
-      position: 5
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.cache_all_entries != undefined & inputs.cache_all_entries == true)
-                return '-sR'
-            if (inputs.cache_all_entries == undefined)
-                return ''
-            return '-sR!'
-        }
-    label: Cache all entries
-    doc: >-
-      Cache all entries in RAM. Requires a lot of memory (the library will
-      usually be loaded almost in its entirety), but speeds up search for
-      unsorted queries.
-  - format: FASTA
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: database
     type: File?
     inputBinding:
@@ -56,48 +18,12 @@ inputs:
       way, but this information will be included in the output for any
       downstream data processing.
     'sbg:fileTypes': FASTA
-  - 'sbg:category': Input configuration
-    id: database_type
-    type:
-      - 'null'
-      - type: enum
-        symbols:
-          - AA
-          - DNA
-        name: database_type
-    inputBinding:
-      position: 4
-      prefix: '-sT'
-      shellQuote: false
-    label: Database type
-    doc: >-
-      Specify the type of the sequence database file. Type must be either "AA"
-      or "DNA".
-  - 'sbg:category': CANDIDATE SELECTION AND SCORING OPTIONS
-    'sbg:toolDefaultValue': 'False'
-    id: isotopically_avg_mass
-    type: boolean?
-    inputBinding:
-      position: 9
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.isotopically_avg_mass != undefined && inputs.isotopically_avg_mass == true)
-                return '-sA'
-            if (inputs.isotopically_avg_mass == undefined)
-                return ''
-            return '-sA!'
-        }
-    label: Isotopically averaged mass
-    doc: Use isotopically averaged mass instead of monoisotopic mass.
-  - format: SPLIB
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: library
     type: File
     inputBinding:
       position: 2
       prefix: '-sL'
-      separate: false
       shellQuote: false
       valueFrom: |-
         ${
@@ -141,8 +67,7 @@ inputs:
     doc: >-
       Specify precursor m/z tolerance. It is the m/z tolerance within which
       candidate entries are compared to the query.
-  - format: 'MZXML, MZDATA, DTA, MSP'
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: spectra_files
     type: 'File[]'
     inputBinding:
@@ -150,10 +75,10 @@ inputs:
       shellQuote: false
       valueFrom: |-
         ${
-            res = ''
+            var res = ''
             if (inputs.spectra_files != undefined && inputs.spectra_files instanceof Array) {
                 for (var i = 0; i < inputs.spectra_files.length; i++) {
-                    name = inputs.spectra_files[i].path.split('/')
+                    var name = inputs.spectra_files[i].path.split('/')
                     name = name[name.length - 1]
                     res = res + ' ' + name
                 }
@@ -213,7 +138,6 @@ outputs:
             return '*.spec.pep.xml'
         }
     'sbg:fileTypes': 'TXT, XLS, PEP.XML, HTML'
-    format: 'TXT, XLS, PEP.XML, HTML'
 doc: >-
   **SpectraST** (also known as "Spectra Search Tool", which rhymes with
   "contrast") is a spectral library building and searching tool designed
@@ -279,29 +203,27 @@ doc: >-
 label: TPP SpectraST Search
 arguments:
   - position: 0
-    separate: false
     shellQuote: false
     valueFrom: /local/tpp/bin/spectrast
   - position: 1001
-    prefix: ''
     shellQuote: false
     valueFrom: |-
       ${
-          res = ''
+          var res = ''
           for (var i = 0; i < inputs.spectra_files.length; i++) {
               res = res + ' ; '
 
-              prefix = inputs.spectra_files[i].path.split('/')
+              var prefix = inputs.spectra_files[i].path.split('/')
               prefix = prefix[prefix.length - 1]
-              part = prefix.split('.')[prefix.split('.').length - 1]
+              var part = prefix.split('.')[prefix.split('.').length - 1]
               prefix = prefix.substring(0, prefix.indexOf(part) - 1)
 
               res = res + 'mv '
 
-              if (inputs.output_format == undefined)
-                  suf = '.pep.xml'
+              if (inputs.output_format == undefined || !(inputs.output_format))
+                  var suf = '.pep.xml'
               else
-                  suf = '.' + inputs.output_format
+                  var suf = '.' + inputs.output_format
 
               res = res + prefix + suf + ' ' + prefix + '.spec' + suf
 

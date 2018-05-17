@@ -5,8 +5,7 @@ $namespaces:
 id: admin/sbg-public-data/tpp-tandem2xml-5-0-0/6
 baseCommand: []
 inputs:
-  - format: XML
-    id: input_file
+  - id: input_file
     type: File
     label: Input XML File
     doc: X!Tandem output XML file
@@ -29,7 +28,6 @@ outputs:
 
         }
     'sbg:fileTypes': PEP.XML
-    format: PEP.XML
 doc: >-
   **Tandem2XML** is a tool that converts result files in Tandem format to pepXML
   format files suitable for use in the Trans-Proteomic Pipeline developed by the

@@ -6,8 +6,7 @@ id: readw4mascot2_1_2
 baseCommand:
   - wine
 inputs:
-  - format: RAW
-    id: Raw_Input
+  - id: Raw_Input
     type: File
     inputBinding:
       position: 101
@@ -568,7 +567,6 @@ outputs:
 
         }
     'sbg:fileTypes': MGF
-    format: MGF
   - id: Output_MS1_spectra
     doc: Output file if sep1 option is selected
     label: Output_MS1_spectra
@@ -581,7 +579,6 @@ outputs:
 
         }
     'sbg:fileTypes': RAW.MS1
-    format: RAW.MS1
   - id: Output_Metadata
     doc: 'Outputs the instrument metho, tune data, and scan Trailer info'
     label: Output_Metadata
@@ -594,7 +591,6 @@ outputs:
 
         }
     'sbg:fileTypes': METADATA
-    format: METADATA
   - id: Output_mzXML_file
     label: Output_mzXML_file
     type: File?
@@ -606,7 +602,6 @@ outputs:
 
         }
     'sbg:fileTypes': mzXML
-    format: mzXML
 doc: >-
   **ReAdw4Mascot2** is a tool for converting between various mass spectrometry
   file formats.

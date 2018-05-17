@@ -5,14 +5,12 @@ $namespaces:
 id: x_tandem_2013_06_15_1_7
 baseCommand: []
 inputs:
-  - format: 'DTA,PKL,MGF,mzML,mzXML'
-    id: input_spectra
+  - id: input_spectra
     type: File
     label: Test spectra
     doc: Input spectra file
     'sbg:fileTypes': 'DTA, PKL, MGF, mzML, mzXML'
-  - format: XML
-    'sbg:category': Input files
+  - 'sbg:category': Input files
     id: list_path_default_parameters
     type: File
     label: 'List path, default parameters'
@@ -371,8 +369,7 @@ inputs:
       word (or words). The value entered for this parameter must be at least one
       of the key words documented in that file. The key words are case
       sensitive. Multiple keywords can be used, separated by commas.
-  - format: 'FASTA, FA, FASTA.PRO'
-    id: protein_fasta
+  - id: protein_fasta
     type: File
     label: Protein Fasta Database
     doc: Example FASTA protein sequence list file
@@ -947,7 +944,6 @@ outputs:
 
         }
     'sbg:fileTypes': XML
-    format: XML
 doc: >-
   **X!Tandem** is a tool that can match tandem mass spectra with peptide
   sequences.

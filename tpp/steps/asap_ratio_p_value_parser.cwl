@@ -5,8 +5,7 @@ $namespaces:
 id: admin/sbg-public-data/tpp-asapratiopvalueparser-5-0-0/7
 baseCommand: []
 inputs:
-  - format: XML
-    'sbg:category': Input configuration
+  - 'sbg:category': Input configuration
     id: input_file
     type: File
     inputBinding:
@@ -41,7 +40,6 @@ outputs:
 
         }
     'sbg:fileTypes': XML
-    format: XML
 doc: >-
   **ASAPRatioPvalueParser** overwrites ASAPRatio protein p-value information
   into ProteinProphet XML format. It is an integral part of the Trans-Proteomic

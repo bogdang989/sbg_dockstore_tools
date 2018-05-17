@@ -32,8 +32,7 @@ inputs:
       shellQuote: false
     label: Heavy labeled peptide
     doc: Heavy labeled peptide elutes before light labeled partner.
-  - format: PEP.XML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_file
     type: File
     inputBinding:
@@ -53,8 +52,7 @@ inputs:
     label: Input file
     doc: Input file.
     'sbg:fileTypes': PEP.XML
-  - format: MZXML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_mzxml_files
     type: 'File[]?'
     label: MZXML files
@@ -185,7 +183,6 @@ outputs:
 
         }
     'sbg:fileTypes': 'XML, PEP.XML'
-    format: 'XML,PEP.XML'
 doc: >-
   **ASAPRatioPeptideParser** is a tool for measuring relative expression levels
   of peptides from isotopically-labeled samples (e.g. ICAT, SILAC). It is an

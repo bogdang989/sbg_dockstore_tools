@@ -68,8 +68,7 @@ inputs:
         }
     label: Correct Pyro-Glu and Ammonia
     doc: 'Correct Pyro-Glu and Ammonia Loss Modifications E[111], Q[111] (OMSSA).'
-  - format: 'FASTA, FA'
-    'sbg:category': Input
+  - 'sbg:category': Input
     id: database
     type: File?
     inputBinding:
@@ -151,8 +150,7 @@ inputs:
       shellQuote: false
     label: Experiment label
     doc: Assign experiment_label to each spectrum_query.
-  - format: PEP.XML
-    'sbg:category': Input files
+  - 'sbg:category': Input files
     id: input_file
     type: File
     inputBinding:
@@ -170,8 +168,7 @@ inputs:
     label: Input File
     doc: Input File.
     'sbg:fileTypes': PEP.XML
-  - format: MZXML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_mzxml_files
     type: 'File[]?'
     label: Input mzxml files
@@ -312,7 +309,6 @@ outputs:
 
         }
     'sbg:fileTypes': PEP.XML
-    format: PEP.XML
 doc: >-
   **InteractParser** is tool that corrects some of the common formatting issues
   found in pepXML files written by various search engines. It is an optional

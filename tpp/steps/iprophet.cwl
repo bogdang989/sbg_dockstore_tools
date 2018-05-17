@@ -35,8 +35,7 @@ inputs:
         }
     label: Decoy
     doc: Specify the decoy tag
-  - format: PEP.XML
-    id: input_files
+  - id: input_files
     type: 'File[]'
     inputBinding:
       position: 51
@@ -252,7 +251,6 @@ outputs:
 
         }
     'sbg:fileTypes': PEP.XML
-    format: PEP.XML
 doc: >-
   **iProphet** is a tool that combines the evidence from multiple
   identifications of the same peptide sequence across different spectra,

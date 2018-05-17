@@ -5,8 +5,7 @@ $namespaces:
 id: admin_sbg_public_data_tpp_refreshparser_5_0_0_8
 baseCommand: []
 inputs:
-  - format: 'FASTA, FA'
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: database
     type: File
     inputBinding:
@@ -19,8 +18,7 @@ inputs:
     label: Database
     doc: Database.
     'sbg:fileTypes': 'FASTA, FA'
-  - format: PEP.XML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_file
     type: File
     inputBinding:
@@ -54,7 +52,6 @@ outputs:
 
         }
     'sbg:fileTypes': 'XML, PEP.XML'
-    format: 'XML, PEP.XML'
 doc: >-
   **RefreshParser** is a tool that refreshes all peptide-protein associations
   against a user-supplied protein database. It is an optional component of the

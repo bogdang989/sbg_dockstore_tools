@@ -153,8 +153,7 @@ inputs:
         }
     label: ICAT
     doc: apply ICAT model (default Autodetect ICAT)
-  - format: PEP.XML
-    id: input_file
+  - id: input_file
     type: File
     inputBinding:
       position: 51
@@ -543,7 +542,6 @@ outputs:
 
         }
     'sbg:fileTypes': PEP.XML
-    format: PEP.XML
 doc: >-
   **PeptideProphet** is a tool that automatically validates peptide assignments
   to MS/MS spectra made using database search programs such as SEQUEST. It is an

@@ -9,7 +9,6 @@ inputs:
     'sbg:fileTypes': RAW
     type: 'File[]'
     label: raw_input
-    format: RAW
     'sbg:includeInPorts': true
     'sbg:x': 68.53847007779716
     'sbg:y': 346.92312409609906
@@ -17,7 +16,6 @@ inputs:
     'sbg:fileTypes': SPLIB
     type: File
     label: library
-    format: SPLIB
     'sbg:x': 270.307735519298
     'sbg:y': 80.30770385335931
     secondaryFiles:
@@ -27,14 +25,12 @@ inputs:
     'sbg:fileTypes': 'FASTA, FA, FASTA.PRO'
     type: File?
     label: database
-    format: 'FASTA, FA, FASTA.PRO'
     'sbg:x': 269.23081925635006
     'sbg:y': 231.30772371828326
   - id: list_path_default_parameters
     'sbg:fileTypes': XML
     type: File
     label: list_path_default_parameters
-    format: XML
     'sbg:x': 314.461545944214
     'sbg:y': 525.1538747090563
 outputs:
@@ -43,7 +39,6 @@ outputs:
     'sbg:fileTypes': mzXML
     type: File[]?
     label: readw4mascot2_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 499.6923347619866
     'sbg:y': 650.3077329122107
@@ -52,7 +47,6 @@ outputs:
     'sbg:fileTypes': 'TXT, XLS, PEP.XML, HTML'
     type: 'File[]?'
     label: spectrast_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 605.1539453486758
     'sbg:y': -6.461541277417041
@@ -61,7 +55,6 @@ outputs:
     'sbg:fileTypes': XML
     type: 'File[]?'
     label: xtandem_output_XML_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 664.1538856579709
     'sbg:y': 626.4615829174338
@@ -70,7 +63,6 @@ outputs:
     'sbg:fileTypes': PEP.XML
     type: File?
     label: peptide_prophet_s_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 1146
     'sbg:y': -27
@@ -79,7 +71,6 @@ outputs:
     'sbg:fileTypes': PEP.XML
     type: File[]?
     label: interact_parser_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 972.1539026040301
     'sbg:y': 494.53850186788145
@@ -88,7 +79,6 @@ outputs:
     'sbg:fileTypes': PEP.XML
     type: File?
     label: peptide_prophet_x_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 1125.3077568457684
     'sbg:y': 426.3846512024221
@@ -97,7 +87,6 @@ outputs:
     'sbg:fileTypes': PEP.XML
     type: File?
     label: iprophet_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 1489.6154707211722
     'sbg:y': 509.07695311766423
@@ -106,7 +95,6 @@ outputs:
     'sbg:fileTypes': XML
     type: File?
     label: asap_pvalue_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 2345.307836074097
     'sbg:y': 184.15385264616754
@@ -115,7 +103,6 @@ outputs:
     'sbg:fileTypes': XML
     type: File?
     label: asap_protein_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 2175.923208915271
     'sbg:y': 476.2307960253498
@@ -124,7 +111,6 @@ outputs:
     'sbg:fileTypes': 'XML, PEP.XML'
     type: File?
     label: refresh_parser_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 1860.6924184469085
     'sbg:y': 518.923105643346
@@ -133,7 +119,6 @@ outputs:
     'sbg:fileTypes': 'XML, PEP.XML'
     type: File?
     label: asap_peptide_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 1684.3077898025522
     'sbg:y': 201.23077759375948
@@ -142,7 +127,6 @@ outputs:
     'sbg:fileTypes': XML
     type: File?
     label: protein_prophet_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 2041.538530050648
     'sbg:y': 201.53844122350463
@@ -151,7 +135,6 @@ outputs:
     'sbg:fileTypes': PEP.XML
     type: File[]?
     label: tandem2xml_output_file
-    required: false
     'sbg:includeInPorts': true
     'sbg:x': 825.307739239473
     'sbg:y': 566.3846545036024
@@ -366,7 +349,7 @@ steps:
 requirements:
   - class: ScatterFeatureRequirement
   - class: MultipleInputFeatureRequirement
-description: >-
+doc: >-
   The Trans-Proteomic Pipeline (TPP) is a suite of software tools used for the
   analysis of a variety of types of mass spectrometry data. It supports mass
   spectrometer output file conversion, peptide identification with a sequence or

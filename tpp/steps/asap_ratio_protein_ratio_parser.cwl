@@ -5,8 +5,7 @@ $namespaces:
 id: admin/sbg-public-data/tpp-asapratioproteinratioparser-5-0-0/6
 baseCommand: []
 inputs:
-  - format: XML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_file
     type: File
     inputBinding:
@@ -38,7 +37,6 @@ outputs:
 
         }
     'sbg:fileTypes': XML
-    format: XML
 doc: >-
   **ASAPRatioProteinRatioParser**  is a tool for measuring relative expression
   levels of proteins from isotopically-labeled samples (e.g. ICAT, SILAC). It is

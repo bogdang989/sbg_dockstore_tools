@@ -117,8 +117,7 @@ inputs:
       shellQuote: false
     label: Highlight peptide N-glycosylation motif
     doc: Highlight peptide N-glycosylation motif.
-  - format: PEP.XML
-    'sbg:category': Input Files
+  - 'sbg:category': Input Files
     id: input_files
     type: 'File[]'
     inputBinding:
@@ -310,7 +309,6 @@ outputs:
             return ''
         }
     'sbg:fileTypes': HTML
-    format: HTML
   - id: output_prot_xml_file
     doc: Output xml file.
     label: Output xml file
@@ -326,7 +324,6 @@ outputs:
             return name.substring(0, name.length - 3) + 'prot.xml'
         }
     'sbg:fileTypes': XML
-    format: XML
   - id: png_file
     doc: Png file.
     label: Png file
@@ -334,7 +331,6 @@ outputs:
     outputBinding:
       glob: '*.png'
     'sbg:fileTypes': PNG
-    format: PNG
 doc: >-
   **ProteinProphet** is a tool for generating probabilities for protein
   identifications based on MS/MS data from the validation results for peptide
