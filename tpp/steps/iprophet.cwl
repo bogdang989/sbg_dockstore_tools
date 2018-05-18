@@ -5,221 +5,11 @@ $namespaces:
 id: admin/sbg-public-data/tpp-iprophet-5-0-0/10
 baseCommand: []
 inputs:
-  - 'sbg:category': Input Options
-    id: category_file
-    type: File?
-    inputBinding:
-      position: 15
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.category_file != undefined) {
-                var path = inputs.category_file.path
-                return 'CAT=' + path
-            }
-        }
-    label: Category File
-    doc: Specify file listing peptide categories
-  - 'sbg:category': Input Options
-    id: decoy_tag
-    type: string?
-    inputBinding:
-      position: 13
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.decoy_tag != undefined) {
-                var decoy = inputs.decoy_tag
-                return 'DECOY=' + decoy
-            }
-        }
-    label: Decoy
-    doc: Specify the decoy tag
   - id: input_files
     type: 'File[]'
-    inputBinding:
-      position: 51
-      shellQuote: false
-      valueFrom: |-
-        ${
-            var res = ''
-            if (inputs.input_files instanceof Array) {
-                for (var i = 0; i < inputs.input_files.length; i++) {
-                    res = res + ' '
-                    res = res + inputs.input_files[i].path.split('/')[inputs.input_files[i].path.split('/').length - 1]
-
-                }
-            } else
-                return inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
-            return res
-        }
     label: Input Files
     doc: Input pepXML files
     'sbg:fileTypes': PEP.XML
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: length
-    type: boolean?
-    inputBinding:
-      position: 19
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.length == true) {
-                return 'LENGTH'
-            }
-        }
-    label: Length
-    doc: Use Peptide Length model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': '1'
-    id: max_threads
-    type: int?
-    inputBinding:
-      position: 11
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.max_threads != undefined)
-                return 'THREADS=' + inputs.max_threads
-            return ''
-        }
-    label: Threads
-    doc: specify threads to use (default 1)
-  - 'sbg:category': Input Options
-    id: min_prob
-    type: float?
-    inputBinding:
-      position: 17
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.min_prob != undefined) {
-                return 'MINPROB=' + inputs.min_prob
-            }
-        }
-    label: Minimum probability
-    doc: specify minimum probability of results to report
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nofpkm
-    type: boolean?
-    inputBinding:
-      position: 21
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nofpkm == true) {
-                return 'NOFPKM'
-            }
-        }
-    label: NOFPKM
-    doc: Do not use FPKM model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonrs
-    type: boolean?
-    inputBinding:
-      position: 27
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonrs == true) {
-                return 'NONRS'
-            }
-        }
-    label: NONRS
-    doc: Do not use NRS model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonse
-    type: boolean?
-    inputBinding:
-      position: 25
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonse == true) {
-                return 'NONSE'
-            }
-        }
-    label: NONSE
-    doc: Do not use NSE model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonsi
-    type: boolean?
-    inputBinding:
-      position: 35
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonsi == true) {
-                return 'NONSI'
-            }
-        }
-    label: NONSI
-    doc: Do not use NSI model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonsm
-    type: boolean?
-    inputBinding:
-      position: 29
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonsm == true) {
-                return 'NONSM'
-            }
-        }
-    label: NONSM
-    doc: Do not use NSM model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonsp
-    type: boolean?
-    inputBinding:
-      position: 31
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonsp == true) {
-                return 'NONSP'
-            }
-        }
-    label: NONSP
-    doc: Do not use NSP model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: nonss
-    type: boolean?
-    inputBinding:
-      position: 23
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.nonss == true) {
-                return 'NONSS'
-            }
-        }
-    label: NONSS
-    doc: Do not use NSS model
-  - 'sbg:category': Input Options
-    'sbg:toolDefaultValue': 'False'
-    id: sharpnse
-    type: boolean?
-    inputBinding:
-      position: 33
-      shellQuote: false
-      valueFrom: |-
-        ${
-            if (inputs.sharpnse == true) {
-                return 'SHARPNSE'
-            }
-        }
-    label: SHARPNSE
-    doc: Use moroe discriminating model for NSE in SWATH mode
 outputs:
   - id: output_file
     doc: Output pepXML file
@@ -292,7 +82,17 @@ label: TPP IProphet
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: /local/tpp/bin/InterProphetParser
+    valueFrom: |-
+      ${
+          var cmd = ''
+          var cmd2 = ''
+          for (var i = 0; i < inputs.input_files.length; i++) {
+            cmd += ' ln -s ' + inputs.input_files[i].path + ' . ; ';
+            cmd2 += ' ' + inputs.input_files[i].basename
+          }
+          cmd += '/local/tpp/bin/InterProphetParser '
+          return cmd + cmd2
+       }
   - position: 101
     shellQuote: false
     valueFrom: |-
@@ -321,9 +121,6 @@ requirements:
     coresMin: 2
   - class: DockerRequirement
     dockerPull: 'images.sbgenomics.com/vladimir_obucina/tpp:5.0.0'
-  - class: InitialWorkDirRequirement
-    listing:
-      - $(inputs.input_files)
   - class: InlineJavascriptRequirement
     expressionLib:
       - |-

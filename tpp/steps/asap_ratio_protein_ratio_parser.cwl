@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-asapratioproteinratioparser-5-0-0/6
+id: tpp_asapratioproteinratioparser_5_0_0_6
 baseCommand: []
 inputs:
   - 'sbg:category': Input Files
@@ -76,7 +76,7 @@ arguments:
           var prefix = inputs.input_file.path.split('/')
           prefix = prefix[prefix.length - 1]
 
-          var res = ' ; mv '
+          var res = ' ; cp '
           res = res + prefix + ' '
           var suf = prefix.substring(prefix.indexOf('.pep'), prefix.length)
           prefix = prefix.substring(0, prefix.indexOf('.pep'))
@@ -184,4 +184,3 @@ requirements:
             else
                 return files.reverse();
         };
-

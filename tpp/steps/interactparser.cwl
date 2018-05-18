@@ -391,8 +391,6 @@ requirements:
       - entryname: parse_xml.py
         entry: "import xml.etree.ElementTree as ET\nimport argparse\n\ndef read_args():\n\tglobal inputprev, inputs, outputs\n\n\tparser = argparse.ArgumentParser(description='Parse xml input.')\n\t\n\tparser.add_argument('--inputprev', required=True)\n\tparser.add_argument('--input', required=True)\n\tparser.add_argument('--output', required=True)\n\t\n\targs = parser.parse_args()\n\tinputprev = args.inputprev\n\tinputs = args.input\n\toutputs = args.output\n\nread_args()\n\ntree = ET.parse(inputs)\nET.register_namespace('', \"http://regis-web.systemsbiology.net/pepXML\")\nroot = tree.getroot()\n\nfor rank in root.iter('{http://regis-web.systemsbiology.net/pepXML}msms_run_summary'):\n        print(rank.get('base_name'))\n        if('mzML' in inputprev):\n            rank.set('base_name', inputprev[:-5])\n            print(inputprev[:-5])\n        else:\n            rank.set('base_name', inputprev[:-6])\n            print(inputprev[:-6])\n\ntree.write(outputs)\nexit(0)"
       - $(inputs.input_file)
-      - $(inputs.input_mzxml_files)
-      - $(inputs.database)
   - class: InlineJavascriptRequirement
     expressionLib:
       - |-

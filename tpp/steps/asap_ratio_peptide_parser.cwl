@@ -220,21 +220,23 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          res = ''
+          var res = ''
+          var ln = ''
           if (inputs.input_mzxml_files != undefined) {
               res = res + 'python ./parse_pep_xml.py --list '
-              list = ''
+              var list = ''
               for (var i = 0; i < inputs.input_mzxml_files.length; i++) {
-                  list = list + ' ' + inputs.input_mzxml_files[i].path.split('/')[inputs.input_mzxml_files[i].path.split('/').length - 1]
+                  list = list + ' ' + inputs.input_mzxml_files[i].basename;
+                  ln += ' ln -s ' + inputs.input_mzxml_files[i].path + ' ; '
               }
 
               res = res + list
 
               res = res + ' --input '
-              name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
+              var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
               res = res + name
 
-              pre = name.substring(0, name.indexOf('.pep.xml'))
+              var pre = name.substring(0, name.indexOf('.pep.xml'))
 
               res = res + ' --output '
               res = res + pre + '.ch.pep.xml  ;  '
@@ -243,23 +245,23 @@ arguments:
           res = res + ' /local/tpp/bin/ASAPRatioPeptideParser'
 
 
-          return res
+          return ln + res
       }
   - position: 1001
     shellQuote: false
     valueFrom: |-
       ${
-          prefix = inputs.input_file.path.split('/')
+          var prefix = inputs.input_file.path.split('/')
           prefix = prefix[prefix.length - 1]
 
           if (inputs.input_mzxml_files != undefined) {
-              pre = prefix.substring(0, prefix.indexOf('.pep.xml'))
+              var pre = prefix.substring(0, prefix.indexOf('.pep.xml'))
               prefix = pre + '.ch.pep.xml'
           }
 
 
 
-          res = ' ; mv '
+          var res = ' ; mv '
           res = res + prefix + ' '
 
           prefix = prefix.substring(0, prefix.indexOf('.pep.xml'))
@@ -280,7 +282,6 @@ requirements:
       - entryname: parse_pep_xml.py
         entry: "import xml.etree.ElementTree as ET\nimport argparse\n\ndef read_args():\n\tglobal file_list, inputs, outputs\n\n\tparser = argparse.ArgumentParser(description='Parse xml input.')\n\t\n\tparser.add_argument('--list', nargs='+', required=True)\n\tparser.add_argument('--input', required=True)\n\tparser.add_argument('--output', required=True)\n\t\n\targs = parser.parse_args()\n\tfile_list = args.list\n\tinputs = args.input\n\toutputs = args.output\n\nread_args()\n\ntree = ET.parse(inputs)\nET.register_namespace('', \"http://regis-web.systemsbiology.net/pepXML\")\nroot = tree.getroot()\n\nfor rank in root.iter('{http://regis-web.systemsbiology.net/pepXML}msms_run_summary'):#('msms_run_summary'):\n\tb_name = rank.get('base_name')\n\tb_name = b_name.split('/')[-1]\n\tfor n_name in file_list:\n\t\tif(b_name in n_name):\n\t\t\trank.set('base_name', n_name[:-6])\n\ntree.write(outputs)\nexit(0)"
       - $(inputs.input_file)
-      - $(inputs.input_mzxml_files)
   - class: InlineJavascriptRequirement
     expressionLib:
       - |-

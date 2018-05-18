@@ -87,7 +87,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          var res = ' mv '
+          var res = ' cp '
           var name = inputs.input_file.path.split('/')[inputs.input_file.path.split('/').length - 1]
 
           res = res + name + ' '

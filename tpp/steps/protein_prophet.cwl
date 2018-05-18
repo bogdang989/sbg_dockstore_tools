@@ -120,22 +120,6 @@ inputs:
   - 'sbg:category': Input Files
     id: input_files
     type: 'File[]'
-    inputBinding:
-      position: 2
-      shellQuote: false
-      valueFrom: |-
-        ${
-            var res = ''
-            if (inputs.input_files != undefined && inputs.input_files instanceof Array) {
-                for (var i = 0; i < inputs.input_files.length; i++) {
-                    var name = inputs.input_files[i].path.split('/')
-                    name = name[name.length - 1]
-                    res = res + ' ' + name
-                }
-                return res
-            } else
-                return inputs.input_files.path.split('/')[inputs.input_files.path.split('/').length - 1]
-        }
     label: Input files
     doc: Input files.
     'sbg:fileTypes': PEP.XML
@@ -366,7 +350,17 @@ label: TPP ProteinProphet
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: /local/tpp/bin/ProteinProphet
+    valueFrom: |-
+      ${
+          var cmd = '';
+          var cmd2 = '';
+          for (var i = 0; i < inputs.input_files.length; i++) {
+            cmd += ' ln -s ' + inputs.input_files[i].path + ' . ; ';
+            cmd2 += inputs.input_files[i].basename + ' ';
+          }
+          cmd += '/local/tpp/bin/ProteinProphet ';
+          return cmd + cmd2
+       }
   - position: 3
     shellQuote: false
     valueFrom: |-
@@ -379,12 +373,12 @@ arguments:
           return name
       }
   - position: 2001
-    prefix: ''
     shellQuote: false
     valueFrom: |-
       ${
-          if (inputs.generate_plot_png_file != undefined && inputs.generate_plot_png_file == true)
+          if (inputs.generate_plot_png_file)
               return '; python gen_html.py'
+          else return ''
       }
 requirements:
   - class: ShellCommandRequirement
@@ -423,7 +417,6 @@ requirements:
 
             
           }
-      - $(inputs.input_files)
   - class: InlineJavascriptRequirement
     expressionLib:
       - |-
