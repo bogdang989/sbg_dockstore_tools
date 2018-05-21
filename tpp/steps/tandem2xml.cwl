@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-tandem2xml-5-0-0/6
+id: tpp_tandem2xml_5_0_0
 baseCommand: []
 inputs:
   - id: input_file

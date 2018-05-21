@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin_sbg_public_data_tpp_refreshparser_5_0_0_8
+id: tpp_refreshparser_5_0_0
 baseCommand: []
 inputs:
   - 'sbg:category': Input Files

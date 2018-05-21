@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-iprophet-5-0-0/10
+id: tpp_iprophet_5_0_0
 baseCommand: []
 inputs:
   - id: input_files
@@ -210,4 +210,3 @@ requirements:
             else
                 return files.reverse();
         };
-

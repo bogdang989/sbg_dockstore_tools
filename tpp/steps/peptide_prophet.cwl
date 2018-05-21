@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin_sbg_public_data_tpp_peptideprophet_5_0_0_9
+id: tpp_peptideprophet_5_0_0
 baseCommand: []
 inputs:
   - id: input_file

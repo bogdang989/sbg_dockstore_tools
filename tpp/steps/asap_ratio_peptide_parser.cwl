@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-asapratiopeptideparser-5-0-0/10
+id: tpp_asapratiopeptideparser_5_0_0
 baseCommand: []
 inputs:
   - 'sbg:category': Input configuration
@@ -371,4 +371,3 @@ requirements:
             else
                 return files.reverse();
         };
-

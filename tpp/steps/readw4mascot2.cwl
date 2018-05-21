@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: readw4mascot2_1_2
+id: readw4mascot2_1
 baseCommand:
   - wine
 inputs:

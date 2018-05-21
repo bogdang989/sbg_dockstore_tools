@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-interactparser-5-0-0/7
+id: tpp_interactparser_5_0_0
 baseCommand: []
 inputs:
   - 'sbg:category': Input Options
@@ -480,4 +480,3 @@ requirements:
             else
                 return files.reverse();
         };
-

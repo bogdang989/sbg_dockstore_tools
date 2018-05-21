@@ -2,7 +2,7 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com'
-id: admin/sbg-public-data/tpp-asapratiopvalueparser-5-0-0/7
+id: tpp_asapratiopvalueparser_5_0_0
 baseCommand: []
 inputs:
   - 'sbg:category': Input configuration
@@ -184,4 +184,3 @@ requirements:
             else
                 return files.reverse();
         };
-

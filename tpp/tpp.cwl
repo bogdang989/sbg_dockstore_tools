@@ -1,6 +1,6 @@
 class: Workflow
 cwlVersion: v1.0
-id: admin_sbg_public_data_the_trans_proteomic_pipeline_5_0_0_14
+id: the_trans_proteomic_pipeline_5_0_0_14
 doc: >-
   The Trans-Proteomic Pipeline (TPP) is a suite of software tools used for the
   analysis of a variety of types of mass spectrometry data. It supports mass
