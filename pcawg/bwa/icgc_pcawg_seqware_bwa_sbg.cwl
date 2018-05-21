@@ -6,82 +6,7 @@ id: pcawg_bwa_sbg_modified
 dct:creator:
   foaf:name: SevenBridgesGenomics
   foaf:mbox: "mailto:support@sbgenomics.com"
-$namespaces:
-  sbg: 'https://sevenbridges.com'
-baseCommand:
-  - /start.sh
-  - python
-  - /home/seqware/Seqware-BWA-Workflow/run_seqware_workflow.py
-inputs:
-  - id: output_file_basename
-    type: string?
-    label: "Output File Basename"
-    doc: >-
-      The basename to use for output files. If not defined, input BAM names will
-      be used to set output name.
-  - id: reads
-    type: 'File[]'
-    inputBinding:
-      position: 1
-      prefix: '--files'
-    label: Input BAM
-    doc: Input reads in BAM format.
-  - id: reference_gz
-    type: File
-    inputBinding:
-      position: 2
-      prefix: '--reference-gz'
-    label: Reference file
-    doc: The reference *.fa.gz file.
-    secondaryFiles:
-      - .64.amb
-      - .64.ann
-      - .64.bwt
-      - .64.pac
-      - .64.sa
-      - .fai
-outputs:
-  - id: merged_output_bam
-    doc: Merged Output BAM containing mapped reads.
-    label: Merged Output BAM
-    type: File
-    outputBinding:
-      glob: $('datastore/' + output_basename() + '.bam')
-      outputEval: >-
-        ${return [].concat(inheritMetadata([].concat(self)[0],
-        inputs.reads))[0]}
-    secondaryFiles:
-      - .bai
-  - id: merged_output_metrics
-    doc: Metrics for output BAM with mapped reads.
-    label: Merged Output Metrics
-    type: File
-    outputBinding:
-      glob: $('datastore/' + output_basename() + '.bam.metrics')
-      outputEval: >-
-        ${return [].concat(inheritMetadata([].concat(self)[0],
-        inputs.reads))[0]}
-  - id: merged_output_unmapped_bam
-    doc: Merged Output BAM containing unmapped reads.
-    label: Merged Output Unmapped BAM
-    type: File
-    outputBinding:
-      glob: $('datastore/' + output_basename() + '.unmapped.bam')
-      outputEval: >-
-        ${return [].concat(inheritMetadata([].concat(self)[0],
-        inputs.reads))[0]}
-    secondaryFiles:
-      - .bai
-  - id: merged_output_unmapped_metrics
-    doc: Metrics for output BAM with unmapped reads.
-    label: Merged Output Unmapped Metrics
-    type: File
-    outputBinding:
-      glob: $('datastore/' + output_basename() + '.unmapped.bam.metrics')
-      outputEval: >-
-        ${return [].concat(inheritMetadata([].concat(self)[0],
-        inputs.reads))[0]}
-doc: |
+doc: >-
   The BWA-Mem workflow from the ICGC PanCancer Analysis of Whole Genomes (PCAWG)
   project.
 
@@ -189,6 +114,81 @@ doc: |
   | 95.2GB         | 9.2$ | 22h 52m  | c4.2xlarge       |
 
   | 143.4GB        | 12.8$ | 31h 5m   | c4.2xlarge     |
+$namespaces:
+  sbg: 'https://sevenbridges.com'
+baseCommand:
+  - /start.sh
+  - python
+  - /home/seqware/Seqware-BWA-Workflow/run_seqware_workflow.py
+inputs:
+  - id: output_file_basename
+    type: string?
+    label: "Output File Basename"
+    doc: >-
+      The basename to use for output files. If not defined, input BAM names will
+      be used to set output name.
+  - id: reads
+    type: 'File[]'
+    inputBinding:
+      position: 1
+      prefix: '--files'
+    label: Input BAM
+    doc: Input reads in BAM format.
+  - id: reference_gz
+    type: File
+    inputBinding:
+      position: 2
+      prefix: '--reference-gz'
+    label: Reference file
+    doc: The reference *.fa.gz file.
+    secondaryFiles:
+      - .64.amb
+      - .64.ann
+      - .64.bwt
+      - .64.pac
+      - .64.sa
+      - .fai
+outputs:
+  - id: merged_output_bam
+    doc: Merged Output BAM containing mapped reads.
+    label: Merged Output BAM
+    type: File
+    outputBinding:
+      glob: $('datastore/' + output_basename() + '.bam')
+      outputEval: >-
+        ${return [].concat(inheritMetadata([].concat(self)[0],
+        inputs.reads))[0]}
+    secondaryFiles:
+      - .bai
+  - id: merged_output_metrics
+    doc: Metrics for output BAM with mapped reads.
+    label: Merged Output Metrics
+    type: File
+    outputBinding:
+      glob: $('datastore/' + output_basename() + '.bam.metrics')
+      outputEval: >-
+        ${return [].concat(inheritMetadata([].concat(self)[0],
+        inputs.reads))[0]}
+  - id: merged_output_unmapped_bam
+    doc: Merged Output BAM containing unmapped reads.
+    label: Merged Output Unmapped BAM
+    type: File
+    outputBinding:
+      glob: $('datastore/' + output_basename() + '.unmapped.bam')
+      outputEval: >-
+        ${return [].concat(inheritMetadata([].concat(self)[0],
+        inputs.reads))[0]}
+    secondaryFiles:
+      - .bai
+  - id: merged_output_unmapped_metrics
+    doc: Metrics for output BAM with unmapped reads.
+    label: Merged Output Unmapped Metrics
+    type: File
+    outputBinding:
+      glob: $('datastore/' + output_basename() + '.unmapped.bam.metrics')
+      outputEval: >-
+        ${return [].concat(inheritMetadata([].concat(self)[0],
+        inputs.reads))[0]}
 label: ICGC-PCAWG-Seqware-BWA-Workflow
 arguments:
   - position: 14
