@@ -2,9 +2,12 @@
 
 class: CommandLineTool
 cwlVersion: v1.0
+id: pcawg_bwa_sbg_modified
+dct:creator:
+  foaf:name: SevenBridgesGenomics
+  foaf:mbox: "mailto:support@sbgenomics.com"
 $namespaces:
   sbg: 'https://sevenbridges.com'
-id: "pcawg_bwa_sbg_modified"
 baseCommand:
   - /start.sh
   - python
@@ -186,9 +189,6 @@ doc: |
   | 95.2GB         | 9.2$ | 22h 52m  | c4.2xlarge       |
 
   | 143.4GB        | 12.8$ | 31h 5m   | c4.2xlarge     |
-dct:creator:
-  foaf:name: SevenBridgesGenomics
-  foaf:mbox: "mailto:support@sbgenomics.com"
 label: ICGC-PCAWG-Seqware-BWA-Workflow
 arguments:
   - position: 14
