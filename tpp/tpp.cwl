@@ -396,7 +396,7 @@ steps:
     in:
       - id: input_files
         source: TPP_RefreshParser/output_file
-        valueFrom: $([self])
+        valueFrom: $([].concat(self))
     out:
       - id: html_file
       - id: output_prot_xml_file
@@ -428,6 +428,7 @@ steps:
 requirements:
   - class: ScatterFeatureRequirement
   - class: StepInputExpressionRequirement
+  - class: InlineJavascriptRequirement
   - class: MultipleInputFeatureRequirement
 'sbg:license': GNU Lesser General Public License v2.1
 'sbg:links':

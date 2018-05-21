@@ -81,7 +81,10 @@ label: TPP RefreshParser
 arguments:
   - position: 0
     shellQuote: false
-    valueFrom: /local/tpp/bin/RefreshParser
+    valueFrom: |-
+        ${
+            return 'cp ' + inputs.input_file.path + ' . ; /local/tpp/bin/RefreshParser'
+        }
   - position: 1001
     prefix: ;
     shellQuote: false
@@ -106,7 +109,6 @@ requirements:
     dockerPull: 'images.sbgenomics.com/vladimir_obucina/tpp:5.0.0'
   - class: InitialWorkDirRequirement
     listing:
-      - $(inputs.input_file)
       - $(inputs.database)
   - class: InlineJavascriptRequirement
     expressionLib:
