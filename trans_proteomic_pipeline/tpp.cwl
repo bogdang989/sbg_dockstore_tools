@@ -75,19 +75,15 @@ doc: >-
 
   10. protein\_prophet\_output\_file: validated protein identifications in
   pepXML format
-   
-  ###NOTE
+  
+  ###Running notes
+  
+  If running with cwltool, please run using non-strict and no-match-user options.  
+    
+  ```
+  cwltool --non-strict --no-match-user tpp.cwl tpp.job.json
+  ```
 
-  Additional TPP tools not included in this workflow are available in a separate
-  workflow in The Clinical Proteomic Tumor Analysis Consortium (CPTAC) public
-  project or upon request:
-
-
-  1. Raw Mass Spectrometry Data Conversion: MSConvert 
-
-  2. Peptide Identification: Comet, MS-GF+
-
-  3. Quantification: XPress, Libra
 label: The Trans-Proteomic Pipeline
 $namespaces:
   sbg: 'https://sevenbridges.com'
